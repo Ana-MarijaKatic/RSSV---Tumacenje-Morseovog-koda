@@ -1,0 +1,432 @@
+const int led = 13;
+String code = "";
+int len = 0;
+char ch;
+char new_char;
+int unit_delay = 500;
+
+
+void dot() {
+  Serial.print(".");
+  digitalWrite(led, HIGH);
+  delay(unit_delay);
+  digitalWrite(led, LOW);
+}
+
+void dash() {
+  Serial.print("-");
+  digitalWrite(led, HIGH);
+  delay(unit_delay * 3);
+  digitalWrite(led, LOW);
+}
+
+void A()
+{
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay * 2);
+}
+void B()
+{
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay * 2);
+}
+void C()
+{
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay * 2);
+}
+void D()
+{
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay * 2);
+}
+void E()
+{
+  dot();
+  delay(unit_delay * 2);
+}
+void f()
+{
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay * 2);
+}
+void G()
+{
+  dash();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay * 2);
+}
+void H()
+{
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay * 2);
+}
+void I()
+{
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay * 2);
+}
+void J()
+{
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay * 2);
+}
+void K()
+{
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay * 2);
+}
+void L()
+{
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay * 2);
+}
+void M()
+{
+  dash();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay * 2);
+}
+void N()
+{
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay * 2);
+}
+void O()
+{
+  dash();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay * 2);
+}
+void P()
+{
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay * 2);
+  dot();
+}
+void Q()
+{
+  dash();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay * 2);
+}
+void R()
+{
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay * 2);
+}
+void S()
+{
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay * 2);
+}
+void T()
+{
+  dash();
+  delay(unit_delay * 2);
+}
+void U()
+{
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay * 2);
+}
+void V()
+{
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay * 2);
+}
+void W()
+{
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay * 2);
+}
+void X()
+{
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay * 2);
+}
+void Y()
+{
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay * 2);
+}
+void Z()
+{
+  dash();
+  delay(unit_delay);
+  dash();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay);
+  dot();
+  delay(unit_delay * 2);
+}
+
+void morse()
+{
+  if (ch == 'A' || ch == 'a')
+  {
+    A();
+    Serial.print(" ");
+  }
+  else if (ch == 'B' || ch == 'b')
+  {
+    B();
+    Serial.print(" ");
+  }
+  else if (ch == 'C' || ch == 'c')
+  {
+    C();
+    Serial.print(" ");
+  }
+  else if (ch == 'D' || ch == 'd')
+  {
+    D();
+    Serial.print(" ");
+  }
+  else if (ch == 'E' || ch == 'e')
+  {
+    E();
+    Serial.print(" ");
+  }
+  else if (ch == 'F' || ch == 'f')
+  {
+    f();
+    Serial.print(" ");
+  }
+  else if (ch == 'G' || ch == 'g')
+  {
+    G();
+    Serial.print(" ");
+  }
+  else if (ch == 'H' || ch == 'h')
+  {
+    H();
+    Serial.print(" ");
+  }
+  else if (ch == 'I' || ch == 'i')
+  {
+    I();
+    Serial.print(" ");
+  }
+  else if (ch == 'J' || ch == 'j')
+  {
+    J();
+    Serial.print(" ");
+  }
+  else if (ch == 'K' || ch == 'k')
+  {
+    K();
+    Serial.print(" ");
+  }
+  else if (ch == 'L' || ch == 'l')
+  {
+    L();
+    Serial.print(" ");
+  }
+  else if (ch == 'M' || ch == 'm')
+  {
+    M();
+    Serial.print(" ");
+  }
+  else if (ch == 'N' || ch == 'n')
+  {
+    N();
+    Serial.print(" ");
+  }
+  else if (ch == 'O' || ch == 'o')
+  {
+    O();
+    Serial.print(" ");
+  }
+  else if (ch == 'P' || ch == 'p')
+  {
+    P();
+    Serial.print(" ");
+  }
+  else if (ch == 'Q' || ch == 'q')
+  {
+    Q();
+    Serial.print(" ");
+  }
+  else if (ch == 'R' || ch == 'r')
+  {
+    R();
+    Serial.print(" ");
+  }
+  else if (ch == 'S' || ch == 's')
+  {
+    S();
+    Serial.print(" ");
+  }
+  else if (ch == 'T' || ch == 't')
+  {
+    T();
+    Serial.print(" ");
+  }
+  else if (ch == 'U' || ch == 'u')
+  {
+    U();
+    Serial.print(" ");
+  }
+  else if (ch == 'V' || ch == 'v')
+  {
+    V();
+    Serial.print(" ");
+  }
+  else if (ch == 'W' || ch == 'w')
+  {
+    W();
+    Serial.print(" ");
+  }
+  else if (ch == 'X' || ch == 'x')
+  {
+    X();
+    Serial.print(" ");
+  }
+  else if (ch == 'Y' || ch == 'y')
+  {
+    Y();
+    Serial.print(" ");
+  }
+  else if (ch == 'Z' || ch == 'z')
+  {
+    Z();
+    Serial.print(" ");
+  }
+  else if (ch == ' ')
+  {
+    delay(unit_delay * 2);
+    Serial.print(" ");
+  }
+  else
+    Serial.println("Unknown symbol!");
+}
+
+void String2Morse()
+{
+  len = code.length();
+  for (int i = 0; i < len; i++)
+  {
+    ch = code.charAt(i);
+    morse();
+  }
+}
+void setup() {
+  Serial.begin(9600);
+  pinMode(led, OUTPUT);
+  Serial.print("Ready\n");
+}
+
+void loop() {
+
+  while (Serial.available())
+  {
+    code = Serial.readString();
+    Serial.print(code);
+    Serial.print(" = ");
+    String2Morse();
+    Serial.println("");
+  }
+  delay(1000);
+}
