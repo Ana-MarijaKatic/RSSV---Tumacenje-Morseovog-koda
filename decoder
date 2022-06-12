@@ -1,0 +1,134 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+byte photoR = 0;
+String code = "";
+int light;
+int minval = 500;
+int mindel = 250;
+int flag = 0;
+int index = 0;
+LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
+
+
+void Morse_decode()
+{
+  static String morse[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....",
+                           "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-",
+                           ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "*", "!"
+                          };
+  int i = 0;
+  if (index == 16){
+    lcd.clear();
+    lcd.home();
+    lcd.print("Morse code:");
+    lcd.setCursor(0,1);
+    index = 0;
+  }
+  while (morse[i] != "!")
+  {
+    if (morse[i] == code)
+    {
+      if(morse[i] == "*"){
+        lcd.print(" "); 
+      }
+      else{
+        lcd.print(char('A' + i));
+      }
+      index++;
+      break;
+    }
+    i++;
+    
+  }
+  if (morse[i] == "!")
+  {
+    Serial.println("");
+    Serial.println("This code does not exist!");
+  }
+
+  code = "";
+  
+  
+}
+
+void setup() {
+  pinMode (photoR, INPUT);
+  Serial.begin(9600);
+
+  lcd.begin(16, 2);              
+  lcd.backlight();
+  lcd.print("Morse code:");
+  lcd.setCursor(0,1);
+  
+}
+void loop() {
+  light = analogRead(photoR);
+  if (light > minval) {
+    delay(350);
+    light = analogRead(photoR);
+    if (light > minval) {
+      delay(400);
+      light = analogRead(photoR);
+      if (light > minval) {
+        code += "-";
+        flag = 1;
+        Serial.print("-");
+        delay(mindel);
+        light = analogRead(photoR);
+        if (light < minval) {
+          delay(mindel);
+          light = analogRead(photoR);
+          if (light < minval) {
+            Morse_decode();
+            code = "";
+            delay(mindel);
+            light = analogRead(photoR);
+            if (light < minval) {
+              delay(mindel);
+              light = analogRead(photoR);
+              if (light < minval) {
+                code = "*";
+                Morse_decode();
+                code = "";
+                Serial.println(" ");
+              }
+            }
+          }
+        }
+      } else if (light < minval) {
+        if (flag == 0) {
+          code += ".";
+          Serial.print(".");
+        }
+        if (flag == 1) {
+          flag = 0;
+        }
+
+        delay(mindel);
+        light = analogRead(photoR);
+        if (light < minval) { //here begins for spaces
+
+          delay(mindel);
+          light = analogRead(photoR);
+          if (light < minval) {
+            Morse_decode();
+            code = "";
+            delay(mindel);
+            light = analogRead(photoR);
+            if (light < minval) {
+              delay(mindel);
+              light = analogRead(photoR);
+              if (light < minval) {
+                code = "*";
+                Morse_decode();
+                code = "";
+                Serial.println(" ");
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
